@@ -29,7 +29,7 @@ body{
     justify-content:end;
     margin: 0 5px;
     cursor: pointer;
-
+    color: white
 }
 
 #greenTile{
@@ -71,6 +71,11 @@ body{
 
 #redTile:hover{
     border: solid rgb(46, 255, 46) 3px ;
+    
+}
+
+#redTile:active{
+    background-color: rgb(255, 137, 137);
 }
 
 #greenTile:hover{
