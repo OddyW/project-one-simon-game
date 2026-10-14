@@ -10,3 +10,11 @@ console.log(redTileElement)
 console.log(greenTileElement)
 console.log(yellowTileElement)
 console.log(blueTileElement)
+
+
+
+playButtonElement.addEventListener('click' , clickedSomething)
+redTileElement.addEventListener('click',clickedSomething)
+greenTileElement.addEventListener('click',clickedSomething)
+yellowTileElement.addEventListener('click', clickedSomething)
+blueTileElement.addEventListener('click' , clickedSomething)
