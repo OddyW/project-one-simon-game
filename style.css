@@ -1,0 +1,55 @@
+body{
+    background-color: grey;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+
+.tiles{
+    width: 400px;
+    height: 400px;
+    background-color: aqua;
+    /* border-radius: 50%; */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#redTile{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    border-top-left-radius: 100%;
+    display: flex;
+    justify-content:end;
+}
+
+#greenTile{
+    width: 50%;
+    height: 50%;
+    background-color: green;
+    border-top-right-radius: 100%;
+    display: flex;
+    justify-content:baseline;
+}
+
+
+
+#yellowTile{
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+    border-bottom-left-radius: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#blueTile{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    border-bottom-right-radius: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
