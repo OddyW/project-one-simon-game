@@ -44,7 +44,7 @@ function clickedSomething() {
 
 }
 
-function play(){
+function play() {
     rotate()
 }
 
@@ -78,15 +78,28 @@ function highlightTile(index) {
 //this function is for testing purposes
 function rotate() {
     counter = 0
-    setInterval(() => {
-        highlightTile(counter)
-        counter++
-        if (counter > 3) {
-            counter = 0
-        }
-        console.log(counter)
-        
-    },  600)
+    let speed = 0
+    function startInterval() {
+        const intervalId = setInterval(() => {
+            highlightTile(counter)
+            counter++
+            if (counter > 3) {
+                counter = 0
+                speed += 100
+            }
+            //cap speed 0, 300 , 600 , 900 etc...
+            if(speed>600){
+                speed = 600
+            }
+            console.log(counter + ' ' + speed)
+            clearInterval(intervalId)
+            startInterval()
+
+
+        }, 1000 - speed)
+    }
+    startInterval()
+
 
 }
 
