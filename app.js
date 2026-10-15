@@ -7,15 +7,17 @@ const blueTileElement = document.querySelector('#blueTile')
 const messageElement = document.querySelector('#message')
 const scoreElement = document.querySelector('#score')
 const highScoreElement = document.querySelector('#highScore')
+const roundElement = document.querySelector('#round')
 
-console.log(playButtonElement)
-console.log(redTileElement)
-console.log(greenTileElement)
-console.log(yellowTileElement)
-console.log(blueTileElement)
-console.log(messageElement)
-console.log(scoreElement)
-console.log(highScoreElement)
+// console.log(playButtonElement)
+// console.log(redTileElement)
+// console.log(greenTileElement)
+// console.log(yellowTileElement)
+// console.log(blueTileElement)
+// console.log(messageElement)
+// console.log(scoreElement)
+// console.log(highScoreElement)
+console.log(roundElement)
 
 //Variables
 let simonSequence = []
@@ -45,7 +47,8 @@ function clickedSomething() {
 }
 
 function play() {
-    rotate()
+    // rotate()
+    gameTurn()
 }
 
 function highlightTile(index) {
@@ -58,7 +61,7 @@ function highlightTile(index) {
     // console.log(tiles[index])
     setTimeout(function () {
         tiles[index].classList.remove('highLight')
-    }, 600)
+    }, 400)
 
 }
 
@@ -76,31 +79,61 @@ function highlightTile(index) {
 // },1000)
 
 //this function is for testing purposes
-function rotate() {
-    counter = 0
+// function rotate() {
+//     counter = 0
+//     let speed = 0
+//     function startInterval() {
+//         const intervalId = setInterval(() => {
+//             highlightTile(counter)
+//             counter++
+//             if (counter > 3) {
+//                 counter = 0
+//                 speed += 100
+//             }
+//             //cap speed 0, 300 , 600 , 900 etc...
+//             if(speed>600){
+//                 speed = 600
+//             }
+//             console.log(counter + ' ' + speed)
+//             clearInterval(intervalId)
+//             startInterval()
+
+
+//         }, 1000 - speed)
+//     }
+//     startInterval()
+// }
+
+function rotate(){
+    let counter = 0
     let speed = 0
-    function startInterval() {
-        const intervalId = setInterval(() => {
+
+    function startInterval(){
+        const intervalId = setInterval(()=>{
             highlightTile(counter)
-            counter++
-            if (counter > 3) {
+            counter = Math.floor(Math.random()*4)
+            // counter++ //call the highlitecounter func and then increase count to go to next tile
+            
+            if(counter > 3){ //set counter back to 0 to restart cycle
                 counter = 0
-                speed += 100
+                 //increase speed by 100ms every full cycle
             }
-            //cap speed 0, 300 , 600 , 900 etc...
-            if(speed>600){
+
+            if(counter >= 0){ //increases speed at every tile
+                speed += 50
+            }
+
+            if(speed > 600){ //caps the speed at 600ms
                 speed = 600
             }
-            console.log(counter + ' ' + speed)
-            clearInterval(intervalId)
+
+            console.log(counter+" Speed: " + speed)
+            clearInterval(intervalId) //clears interval?
             startInterval()
-
-
         }, 1000 - speed)
     }
+
     startInterval()
-
-
 }
 
 
@@ -109,8 +142,16 @@ function gameTurn() {
     //this function will generate the random sequence for the player to click
     // isPlayerTurn = false
 
-    // simonSequence.push(Math.floor(Math.random() * 4))
-    // console.log(simonSequence)
+    simonSequence.push(Math.floor(Math.random() * 4))
+    console.log(simonSequence)
+
+    round = simonSequence.length
+    roundElement.textContent = round
+
+    for(let i=0; i<simonSequence.length; i++){
+        console.log(i + " " + simonSequence.length)
+        // highlightTile(i)
+    }
 }
 
 function playerChoice() {
@@ -118,9 +159,7 @@ function playerChoice() {
     //sequence correctly
 }
 
-function roundCounter() {
-    //This function should track which round the player has reached
-}
+
 
 function scoreTracker() {
     //This function should keep track of player score, store highest score
