@@ -74,9 +74,9 @@ body{
     
 }
 
-#redTile:active{
+/* #redTile:active{
     background-color: rgb(255, 137, 137);
-}
+} */
 
 #greenTile:hover{
     border: solid rgb(46, 255, 46) 3px ;
@@ -101,13 +101,18 @@ body{
     /* display: ; */
 }
 
+/* #restartBtn{
+    background-color: red;
+    /* margin-top: 40px; */
+/* } */ 
+
 #playBtn{
     border-radius: 50%;
     height: 75px;
     width: 75px;
     margin: 60px auto;
     cursor: pointer;
-    
+    display: block;
 }
 
 #round{
@@ -132,4 +137,20 @@ body{
 
 .score{
     background-color: blueviolet;
+}
+
+#redTile.highLight{
+    background-color: rgb(255, 126, 126);
+}
+
+#greenTile.highLight{
+    background-color: rgb(0, 227, 0);
+}
+
+#yellowTile.highLight{
+    background-color: rgb(255, 255, 195);
+}
+
+#blueTile.highLight{
+    background-color: rgb(139, 139, 255);
 }
