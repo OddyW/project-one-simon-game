@@ -36,31 +36,66 @@ function clickedSomething() {
     // redTileElement.textContent = "Clicked on red!"
     // playButtonElement.textContent ="Game started"
     gameTurn()
-    highlightTile(0)
-    highlightTile(1)
-    highlightTile(2)
-    highlightTile(3)
-    
+    // highlightTile(0)
+    // highlightTile(1)
+    // highlightTile(2)
+    // highlightTile(3)
+    // rotate()
 
+}
+
+function play(){
+    rotate()
 }
 
 function highlightTile(index) {
     //this function should highlite each tile when clicked, function will be used
     //by player and the game 
+    //this function is index based as the four tiles are stored in an array, using index to help calling them individually
+    //classList is utilized here to add/remove the styling along the setInterval() so it makes a nice looking flashing/highlighting tiles
 
     tiles[index].classList.add('highLight')
     // console.log(tiles[index])
     setTimeout(function () {
         tiles[index].classList.remove('highLight')
-    }, 500)
+    }, 600)
+
+}
+
+// for(let i=0; i<4; i++){
+//     setInterval(function(){
+//         console.log(highlightTile(i))
+//     }, 1700)
+
+// }
+
+// setInterval(()=>{
+//     for(let i=0; i<4; i++){
+//         console.log(i)
+//     }
+// },1000)
+
+//this function is for testing purposes
+function rotate() {
+    counter = 0
+    setInterval(() => {
+        highlightTile(counter)
+        counter++
+        if (counter > 3) {
+            counter = 0
+        }
+        console.log(counter)
+        
+    },  600)
 
 }
 
 
 
-
 function gameTurn() {
     //this function will generate the random sequence for the player to click
+    // isPlayerTurn = false
+
     // simonSequence.push(Math.floor(Math.random() * 4))
     // console.log(simonSequence)
 }
@@ -82,7 +117,7 @@ function scoreTracker() {
 
 
 //event listeners
-playButtonElement.addEventListener('click', clickedSomething)
+playButtonElement.addEventListener('click', play)
 redTileElement.addEventListener('click', clickedSomething)
 greenTileElement.addEventListener('click', clickedSomething)
 yellowTileElement.addEventListener('click', clickedSomething)
