@@ -154,3 +154,8 @@ body{
 #blueTile.highLight{
     background-color: rgb(139, 139, 255);
 }
+
+#playBtn.grey{
+    opacity: 0.5;
+    cursor: default;
+}

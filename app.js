@@ -22,14 +22,15 @@ console.log(roundElement)
 //Variables
 let simonSequence = []
 let tiles = [redTileElement, greenTileElement, yellowTileElement, blueTileElement]
-let playerSequence = null
+let playerIndex = 0
+let gamePlaying = false
 let round = 0
 let isPlayerTurn = false
 let score = 0
 let highScore = 0
 
 
-
+// gameTurn()
 
 
 // placeholder funciton to test stuff
@@ -47,8 +48,17 @@ function clickedSomething() {
 }
 
 function play() {
-    // rotate()
+    
+    gamePlaying = true
+    playButtonElement.textContent = "Restart"
+    messageElement.textContent = ""
+    simonSequence = []
+    round = 0
+    score = 0
+    scoreElement.textContent = 0
     gameTurn()
+
+    
 }
 
 function highlightTile(index) {
@@ -107,7 +117,7 @@ function highlightTile(index) {
 function rotate(){
     let counter = 0
     let speed = 0
-
+    
     function startInterval(){
         const intervalId = setInterval(()=>{
             highlightTile(counter)
@@ -136,11 +146,13 @@ function rotate(){
     startInterval()
 }
 
-
+// rotate()
 
 function gameTurn() {
     //this function will generate the random sequence for the player to click
-    // isPlayerTurn = false
+    isPlayerTurn = false
+    playerIndex = 0
+    playButtonElement.classList.add('grey')
 
     simonSequence.push(Math.floor(Math.random() * 4))
     console.log(simonSequence)
@@ -148,10 +160,22 @@ function gameTurn() {
     round = simonSequence.length
     roundElement.textContent = round
 
+    let delay = 0
     for(let i=0; i<simonSequence.length; i++){
-        console.log(i + " " + simonSequence.length)
-        // highlightTile(i)
+        delay+= 1000
+        console.log("i:"+ i + " random:" + simonSequence[i])
+        
+        
+        setTimeout(() => {
+            highlightTile(simonSequence[i])
+        }, delay);
+        
     }
+
+    setTimeout(() => {
+       isPlayerTurn = true
+       playButtonElement.classList.remove('grey') 
+    }, delay + 500);
 }
 
 function playerChoice() {
@@ -159,7 +183,13 @@ function playerChoice() {
     //sequence correctly
 }
 
+// setTimeout(()=>{
+//     console.log('hi')
+// },1000)
 
+// setInterval(()=>{
+    // console.log('hi')
+// },1000)
 
 function scoreTracker() {
     //This function should keep track of player score, store highest score
