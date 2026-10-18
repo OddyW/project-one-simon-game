@@ -8,6 +8,10 @@ const messageElement = document.querySelector('#message')
 const scoreElement = document.querySelector('#score')
 const highScoreElement = document.querySelector('#highScore')
 const roundElement = document.querySelector('#round')
+const easyButtonElement = document.querySelector('#easyBtn')
+const mediumButtonElement = document.querySelector('#mediumBtn')
+const hardButtonElement = document.querySelector('#hardBtn')
+const currentDifficultyElement = document.querySelector('#currentDiff')
 
 // console.log(playButtonElement)
 // console.log(redTileElement)
@@ -17,7 +21,11 @@ const roundElement = document.querySelector('#round')
 // console.log(messageElement)
 // console.log(scoreElement)
 // console.log(highScoreElement)
-console.log(roundElement)
+// console.log(roundElement)
+console.log(easyButtonElement)
+console.log(mediumButtonElement)
+console.log(hardButtonElement)
+console.log(currentDifficultyElement)
 
 //Variables
 let simonSequence = []
@@ -30,22 +38,48 @@ let score = 0
 let highScore = 0
 let totalRounds = 5
 
+const difficulties = {
+    easy: {rounds: 10},
+    medium: {rounds: 20},
+    hard: {rounds: 30},
+}
+
+let currentDifficulty = difficulties.easy
+
 
 // gameTurn()
 
 
 // placeholder funciton to test stuff
-function clickedSomething() {
+// function clickedSomething() {
     // console.log('Click is working!')
     // redTileElement.textContent = "Clicked on red!"
     // playButtonElement.textContent ="Game started"
-    gameTurn()
+    // gameTurn()
     // highlightTile(0)
     // highlightTile(1)
     // highlightTile(2)
     // highlightTile(3)
     // rotate()
 
+// }
+
+function setEasy(){
+    currentDifficulty = difficulties.easy
+    currentDifficultyElement.textContent = 'Easy'
+    console.log(currentDifficulty)
+}
+
+function setMedium(){
+    currentDifficulty = difficulties.medium
+    currentDifficultyElement.textContent = 'Medium'
+    console.log(currentDifficulty)
+}
+
+function setHard(){
+    currentDifficulty = difficulties.hard
+    currentDifficultyElement.textContent = 'Hard'
+    console.log(currentDifficulty.rounds)
 }
 
 function play() {
@@ -121,7 +155,7 @@ function gameTurn() {
     isPlayerTurn = false
     playerIndex = 0
     playButtonElement.classList.add('grey')
-
+    messageElement.textContent = 'Simon Turn..'
     simonSequence.push(Math.floor(Math.random() * 4))
     console.log(simonSequence)
 
@@ -143,7 +177,8 @@ function gameTurn() {
     setTimeout(() => {
        isPlayerTurn = true
        playButtonElement.classList.remove('grey') 
-    }, delay + 500);
+       messageElement.textContent = 'Your Turn!'
+    }, delay + 700);
 }
 
 function playerChoice(event) {
@@ -170,7 +205,7 @@ function playerChoice(event) {
         isPlayerTurn = false
         console.log('CORRECT')
         scoreTracker()
-        if(round === totalRounds){
+        if(round === currentDifficulty.rounds){
             wonSimon()
         } else { //if rounds not equal totalRounds then keep playing!
             gameTurn()
@@ -215,3 +250,6 @@ redTileElement.addEventListener('click', playerChoice)
 greenTileElement.addEventListener('click', playerChoice)
 yellowTileElement.addEventListener('click', playerChoice)
 blueTileElement.addEventListener('click', playerChoice)
+easyButtonElement.addEventListener('click', setEasy)
+mediumButtonElement.addEventListener('click' ,setMedium)
+hardButtonElement.addEventListener('click' , setHard)
