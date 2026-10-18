@@ -12,7 +12,7 @@ const easyButtonElement = document.querySelector('#easyBtn')
 const mediumButtonElement = document.querySelector('#mediumBtn')
 const hardButtonElement = document.querySelector('#hardBtn')
 const currentDifficultyElement = document.querySelector('#currentDiff')
-
+const clearHighScoreElement = document.querySelector('#clearHighScore')
 // console.log(playButtonElement)
 // console.log(redTileElement)
 // console.log(greenTileElement)
@@ -26,6 +26,7 @@ console.log(easyButtonElement)
 console.log(mediumButtonElement)
 console.log(hardButtonElement)
 console.log(currentDifficultyElement)
+console.log(clearHighScoreElement)
 
 //Variables
 let simonSequence = []
@@ -236,12 +237,24 @@ function scoreTracker() {
     score = round
     scoreElement.textContent = score
 
-    
+    //updating high score
     if(highScore < score){
         highScore = score
+
+        localStorage.setItem('gameHighScore', highScore);
     }
+    console.log('HighScore: '+highScore)
+    highScoreElement.textContent = Number(localStorage.getItem('gameHighScore'))
+}
+
+
+
+function clearHighScore(){
+    highScore = 0
+    localStorage.removeItem('gameHighScore')
     highScoreElement.textContent = highScore
 }
+
 
 
 //event listeners
@@ -253,3 +266,10 @@ blueTileElement.addEventListener('click', playerChoice)
 easyButtonElement.addEventListener('click', setEasy)
 mediumButtonElement.addEventListener('click' ,setMedium)
 hardButtonElement.addEventListener('click' , setHard)
+clearHighScoreElement.addEventListener('click',clearHighScore)
+
+
+
+
+highScore = localStorage.getItem('gameHighScore') ?  localStorage.getItem('gameHighScore') : 0
+highScoreElement.textContent = highScore
