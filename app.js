@@ -158,27 +158,39 @@ function playerChoice(event) {
     highlightTile(tileIndex)
 
     //checks for wrong plays
-    if(tileIndex !== simonSequence[playerIndex]){ 
+    if(tileIndex !== simonSequence[playerIndex]){ //player loses instantly when clikcing wrong tile
         console.log('WRONG')
-        isPlayerTurn = false
-        gamePlaying = false 
+        gameOver() 
+        return
       }
 
     playerIndex++
 
-    if(playerIndex === simonSequence.length){
-        //this the correct if, also stop player turn once done 
-        isPlayerTurn === false
+    if(playerIndex === simonSequence.length){ //this the correct if, also stop player turn once done 
+        isPlayerTurn = false
         console.log('CORRECT')
+        scoreTracker()
         if(round === totalRounds){
-            //win the game, maybe call another function for winning
-            console.log('You won')
-        } else {
-            //if rounds not equal totalRounds then keep playing!
+            wonSimon()
+        } else { //if rounds not equal totalRounds then keep playing!
             gameTurn()
         }
     }
 
+}
+
+function gameOver(){
+    isPlayerTurn = false
+    gamePlaying = false
+    playButtonElement.textContent = 'PLAY AGAIN'
+    messageElement.textContent = 'You Lose at round: ' + round
+}
+
+function wonSimon(){
+    isPlayerTurn = false
+    gamePlaying = false
+    playButtonElement.textContent = 'PLAY AGAIN'
+    messageElement.textContent = 'You Win!'
 }
 
 
@@ -186,7 +198,14 @@ function playerChoice(event) {
 function scoreTracker() {
     //This function should keep track of player score, store highest score
     //and track the score during the game
+    score = round
+    scoreElement.textContent = score
 
+    
+    if(highScore < score){
+        highScore = score
+    }
+    highScoreElement.textContent = highScore
 }
 
 
