@@ -28,6 +28,7 @@ let round = 0
 let isPlayerTurn = false
 let score = 0
 let highScore = 0
+let totalRounds = 5
 
 
 // gameTurn()
@@ -114,39 +115,6 @@ function highlightTile(index) {
 //     startInterval()
 // }
 
-function rotate(){
-    let counter = 0
-    let speed = 0
-    
-    function startInterval(){
-        const intervalId = setInterval(()=>{
-            highlightTile(counter)
-            counter = Math.floor(Math.random()*4)
-            // counter++ //call the highlitecounter func and then increase count to go to next tile
-            
-            if(counter > 3){ //set counter back to 0 to restart cycle
-                counter = 0
-                 //increase speed by 100ms every full cycle
-            }
-
-            if(counter >= 0){ //increases speed at every tile
-                speed += 50
-            }
-
-            if(speed > 600){ //caps the speed at 600ms
-                speed = 600
-            }
-
-            console.log(counter+" Speed: " + speed)
-            clearInterval(intervalId) //clears interval?
-            startInterval()
-        }, 1000 - speed)
-    }
-
-    startInterval()
-}
-
-// rotate()
 
 function gameTurn() {
     //this function will generate the random sequence for the player to click
@@ -163,7 +131,7 @@ function gameTurn() {
     let delay = 0
     for(let i=0; i<simonSequence.length; i++){
         delay+= 1000
-        console.log("i:"+ i + " random:" + simonSequence[i])
+        // console.log("i:"+ i + " random:" + simonSequence[i])
         
         
         setTimeout(() => {
@@ -178,18 +146,42 @@ function gameTurn() {
     }, delay + 500);
 }
 
-function playerChoice() {
+function playerChoice(event) {
     //this function will check what the player choice is, see if player is follwing the 
     //sequence correctly
+    if (isPlayerTurn === false) {
+        return
+    } //checks player turn, if it is false, player can't press tiles during gamePlaying
+
+    const tileIndex = tiles.indexOf(event.target)
+
+    highlightTile(tileIndex)
+
+    //checks for wrong plays
+    if(tileIndex !== simonSequence[playerIndex]){ 
+        console.log('WRONG')
+        isPlayerTurn = false
+        gamePlaying = false 
+      }
+
+    playerIndex++
+
+    if(playerIndex === simonSequence.length){
+        //this the correct if, also stop player turn once done 
+        isPlayerTurn === false
+        console.log('CORRECT')
+        if(round === totalRounds){
+            //win the game, maybe call another function for winning
+            console.log('You won')
+        } else {
+            //if rounds not equal totalRounds then keep playing!
+            gameTurn()
+        }
+    }
+
 }
 
-// setTimeout(()=>{
-//     console.log('hi')
-// },1000)
 
-// setInterval(()=>{
-    // console.log('hi')
-// },1000)
 
 function scoreTracker() {
     //This function should keep track of player score, store highest score
@@ -200,7 +192,7 @@ function scoreTracker() {
 
 //event listeners
 playButtonElement.addEventListener('click', play)
-redTileElement.addEventListener('click', clickedSomething)
-greenTileElement.addEventListener('click', clickedSomething)
-yellowTileElement.addEventListener('click', clickedSomething)
-blueTileElement.addEventListener('click', clickedSomething)
+redTileElement.addEventListener('click', playerChoice)
+greenTileElement.addEventListener('click', playerChoice)
+yellowTileElement.addEventListener('click', playerChoice)
+blueTileElement.addEventListener('click', playerChoice)
