@@ -13,6 +13,7 @@ const mediumButtonElement = document.querySelector('#mediumBtn')
 const hardButtonElement = document.querySelector('#hardBtn')
 const currentDifficultyElement = document.querySelector('#currentDiff')
 const clearHighScoreElement = document.querySelector('#clearHighScore')
+const tileBorderHLElement = document.querySelector('.tiles')
 // console.log(playButtonElement)
 // console.log(redTileElement)
 // console.log(greenTileElement)
@@ -27,7 +28,7 @@ console.log(mediumButtonElement)
 console.log(hardButtonElement)
 console.log(currentDifficultyElement)
 console.log(clearHighScoreElement)
-
+console.log(tileBorderHLElement)
 //Variables
 let simonSequence = []
 let tiles = [redTileElement, greenTileElement, yellowTileElement, blueTileElement]
@@ -40,11 +41,11 @@ let highScore = 0
 let totalRounds = 5
 
 const difficulties = {
-    easy: {rounds: 10},
-    medium: {rounds: 20},
-    hard: {rounds: 30},
+    easy: {rounds: 10, startSpeed: 20, speedUp: 40, maxSpeed: 300},
+    medium: {rounds: 20, startSpeed: 60, speedUp: 50, maxSpeed: 500 },
+    hard: {rounds: 30, startSpeed: 100, speedUp: 60, maxSpeed: 600},
 }
-
+let speed = 0
 let currentDifficulty = difficulties.easy
 
 
@@ -66,22 +67,37 @@ let currentDifficulty = difficulties.easy
 // }
 
 function setEasy(){
+    if(gamePlaying) {return}
     currentDifficulty = difficulties.easy
     currentDifficultyElement.textContent = 'Easy'
     console.log(currentDifficulty)
 }
 
 function setMedium(){
+    if(gamePlaying) {return}
     currentDifficulty = difficulties.medium
     currentDifficultyElement.textContent = 'Medium'
     console.log(currentDifficulty)
 }
 
 function setHard(){
+    if(gamePlaying) {return}
     currentDifficulty = difficulties.hard
     currentDifficultyElement.textContent = 'Hard'
     console.log(currentDifficulty.rounds)
 }
+
+function gameSpeed(){
+    speed += currentDifficulty.speedUp
+    
+
+    if (speed > currentDifficulty.maxSpeed){
+        speed = currentDifficulty.maxSpeed
+    }
+    console.log(speed)
+}
+
+
 
 function play() {
     
@@ -91,10 +107,11 @@ function play() {
     simonSequence = []
     round = 0
     score = 0
+    speed = currentDifficulty.startSpeed
     scoreElement.textContent = 0
     gameTurn()
 
-    
+    console.log(speed)
 }
 
 function highlightTile(index) {
@@ -107,7 +124,7 @@ function highlightTile(index) {
     // console.log(tiles[index])
     setTimeout(function () {
         tiles[index].classList.remove('highLight')
-    }, 400)
+    }, 250)
 
 }
 
@@ -156,16 +173,22 @@ function gameTurn() {
     isPlayerTurn = false
     playerIndex = 0
     playButtonElement.classList.add('grey')
+    tileBorderHLElement.classList.remove('playerTurn')
     messageElement.textContent = 'Simon Turn..'
     simonSequence.push(Math.floor(Math.random() * 4))
+    //
     console.log(simonSequence)
 
     round = simonSequence.length
     roundElement.textContent = round
 
+    if (round > 1){
+        gameSpeed()
+    }
+
     let delay = 0
     for(let i=0; i<simonSequence.length; i++){
-        delay+= 1000
+        delay+= 1000 - speed
         // console.log("i:"+ i + " random:" + simonSequence[i])
         
         
@@ -178,6 +201,7 @@ function gameTurn() {
     setTimeout(() => {
        isPlayerTurn = true
        playButtonElement.classList.remove('grey') 
+       tileBorderHLElement.classList.add('playerTurn')
        messageElement.textContent = 'Your Turn!'
     }, delay + 700);
 }
@@ -209,7 +233,7 @@ function playerChoice(event) {
         if(round === currentDifficulty.rounds){
             wonSimon()
         } else { //if rounds not equal totalRounds then keep playing!
-            gameTurn()
+            setTimeout(gameTurn,700)
         }
     }
 

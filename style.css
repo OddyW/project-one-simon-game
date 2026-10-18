@@ -28,7 +28,7 @@ body{
     display: flex;
     justify-content:end;
     margin: 0 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
     color: white
 }
 
@@ -40,7 +40,7 @@ body{
     display: flex;
     justify-content:baseline;
     margin: 0 4px;
-    cursor: pointer;
+    /* cursor: pointer; */
 
 }
 
@@ -54,7 +54,7 @@ body{
     display: flex;
     justify-content: flex-end;
     margin: 0 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
 
 }
 
@@ -66,19 +66,24 @@ body{
     display: flex;
     justify-content: flex-start;
     margin: 0 4px;
+    /* cursor: pointer; */
+}
+
+
+.tiles.playerTurn #redTile:hover,
+.tiles.playerTurn #greenTile:hover,
+.tiles.playerTurn #yellowTile:hover,
+.tiles.playerTurn #blueTile:hover{
+    border: solid rgb(250, 251, 250) 3px ;
     cursor: pointer;
 }
 
-#redTile:hover{
+/* #redTile:hover{
     border: solid rgb(250, 251, 250) 3px ;
     
-}
-
-/* #redTile:active{
-    background-color: rgb(255, 137, 137);
 } */
 
-#greenTile:hover{
+/* #greenTile:hover{
     border: solid rgb(250, 251, 250) 3px ;
 }
 
@@ -88,7 +93,7 @@ body{
 
 #blueTile:hover{
    border: solid rgb(250, 251, 250) 3px ;
-}
+} */
 
 .middlePanel{
     /* position: fixed; */
@@ -113,6 +118,7 @@ body{
     margin: 60px auto;
     cursor: pointer;
     display: block;
+    
 }
 
 #round{
@@ -128,6 +134,7 @@ body{
 #playBtn:hover{
     background-color: yellow;
     border: solid black 1px;
+    box-shadow: 0 0 15px yellow;
 }
 
 .scoreLine{
