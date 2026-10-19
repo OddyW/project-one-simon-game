@@ -1,10 +1,27 @@
 body{
-    background-color: grey;
-    justify-content: center;
+    background-color: rgb(48, 47, 47);
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
     text-align: center;
 }
 
+h1{
+    font-size: 48px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin: 10px 0;
+    text-shadow: 0 0 15px rgb(65, 122, 236);
+}
 
+h3{
+    font-weight: normal;
+    font-size: 15px;
+    color: #b8b8d0;
+    width: 500px;
+    margin: 0 auto 15px;
+}
 
 
 .tiles{
@@ -78,22 +95,7 @@ body{
     cursor: pointer;
 }
 
-/* #redTile:hover{
-    border: solid rgb(250, 251, 250) 3px ;
-    
-} */
 
-/* #greenTile:hover{
-    border: solid rgb(250, 251, 250) 3px ;
-}
-
-#yellowTile:hover{
-    border: solid rgb(250, 251, 250) 3px ;
-}
-
-#blueTile:hover{
-   border: solid rgb(250, 251, 250) 3px ;
-} */
 
 .middlePanel{
     /* position: fixed; */
@@ -102,7 +104,7 @@ body{
     height: 200px;
     border-radius: 50%;
     margin: -310px auto;
-    
+    color: black
     /* display: ; */
 }
 
@@ -122,11 +124,12 @@ body{
 }
 
 #round{
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border: 1px solid black;
     height: 30px;
     width: 50px;
     margin: -45px auto;
+    /* box-shadow: 0 0 25px rgb(255, 0, 0); */
     /* cursor: pointer; */
 }  
 
@@ -171,4 +174,8 @@ body{
 #playBtn.grey{
     opacity: 0.5;
     cursor: default;
+}
+
+.highscore{
+    background-color: red;
 }

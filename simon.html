@@ -11,10 +11,15 @@
 </head>
 
 <body>
+    
+    <audio id="xylo1" src="./sounds/xylophone/xylo-a.wav"></audio>
+    <audio id="xylo2" src="./sounds/xylophone/xylo-d.wav"></audio>
+    <audio id="xylo3" src="./sounds/xylophone/xylo-e.wav"></audio>
+    <audio id="xylo4" src="./sounds/xylophone/xylo-g.wav"></audio>
     <!--  -->
     <h1>Simon game</h1>
     <h3>How to play: the tiles will play in a random sequence, press those tiles in the same order shown to you.</h3>
-
+     <button id="muteBtn">Mute</button>
     <div class="scoreLine">
         <h4 class="score">Score: <span id="score">0</span> </h4>
         <h4 id="message">Winning/losing message here</h4>
@@ -32,8 +37,10 @@
         <!-- middle panel -->
         <div class="middlePanel">
         <!-- <button id="restartBtn">Restart</button> -->
+        
         <button id="playBtn">PLAY</button>
         <div id="round">---</div>
+
     </div>
     </div>
 

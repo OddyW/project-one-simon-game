@@ -14,6 +14,13 @@ const hardButtonElement = document.querySelector('#hardBtn')
 const currentDifficultyElement = document.querySelector('#currentDiff')
 const clearHighScoreElement = document.querySelector('#clearHighScore')
 const tileBorderHLElement = document.querySelector('.tiles')
+const muteButtonElement = document.querySelector('#muteBtn')
+const soundElement = [
+    document.querySelector('#xylo1'),
+    document.querySelector('#xylo2'),
+    document.querySelector('#xylo3'),
+    document.querySelector('#xylo4'),
+]
 // console.log(playButtonElement)
 // console.log(redTileElement)
 // console.log(greenTileElement)
@@ -38,12 +45,12 @@ let round = 0
 let isPlayerTurn = false
 let score = 0
 let highScore = 0
-let totalRounds = 5
+let isMuted = false
 
 const difficulties = {
     easy: {rounds: 10, startSpeed: 20, speedUp: 40, maxSpeed: 300},
     medium: {rounds: 20, startSpeed: 60, speedUp: 50, maxSpeed: 500 },
-    hard: {rounds: 30, startSpeed: 100, speedUp: 60, maxSpeed: 600},
+    hard: {rounds: 30, startSpeed: 100, speedUp: 80, maxSpeed: 700},
 }
 let speed = 0
 let currentDifficulty = difficulties.easy
@@ -97,10 +104,23 @@ function gameSpeed(){
     console.log(speed)
 }
 
+function toggleMute() {
+    isMuted = !isMuted
 
+    const allAudio = document.querySelectorAll('audio')
+    for (let i = 0; i < allAudio.length; i++) {
+        allAudio[i].muted = isMuted
+    }
 
-function play() {
-    
+    if (isMuted) {
+        muteButtonElement.textContent = 'Unmute'
+    } else {
+        muteButtonElement.textContent = 'Mute'
+    }
+}
+
+function playSimon() {
+    if (gamePlaying && isPlayerTurn === false) {return}
     gamePlaying = true
     playButtonElement.textContent = "Restart"
     messageElement.textContent = ""
@@ -119,6 +139,9 @@ function highlightTile(index) {
     //by player and the game 
     //this function is index based as the four tiles are stored in an array, using index to help calling them individually
     //classList is utilized here to add/remove the styling along the setInterval() so it makes a nice looking flashing/highlighting tiles
+    soundElement[index].currentTime = 0 //resets the audio file so it always plays from start
+    soundElement[index].volume = 0.4
+    soundElement[index].play() // plays the audio
 
     tiles[index].classList.add('highLight')
     // console.log(tiles[index])
@@ -128,44 +151,6 @@ function highlightTile(index) {
 
 }
 
-// for(let i=0; i<4; i++){
-//     setInterval(function(){
-//         console.log(highlightTile(i))
-//     }, 1700)
-
-// }
-
-// setInterval(()=>{
-//     for(let i=0; i<4; i++){
-//         console.log(i)
-//     }
-// },1000)
-
-//this function is for testing purposes
-// function rotate() {
-//     counter = 0
-//     let speed = 0
-//     function startInterval() {
-//         const intervalId = setInterval(() => {
-//             highlightTile(counter)
-//             counter++
-//             if (counter > 3) {
-//                 counter = 0
-//                 speed += 100
-//             }
-//             //cap speed 0, 300 , 600 , 900 etc...
-//             if(speed>600){
-//                 speed = 600
-//             }
-//             console.log(counter + ' ' + speed)
-//             clearInterval(intervalId)
-//             startInterval()
-
-
-//         }, 1000 - speed)
-//     }
-//     startInterval()
-// }
 
 
 function gameTurn() {
@@ -228,6 +213,7 @@ function playerChoice(event) {
 
     if(playerIndex === simonSequence.length){ //this the correct if, also stop player turn once done 
         isPlayerTurn = false
+        tileBorderHLElement.classList.remove('playerTurn')
         console.log('CORRECT')
         scoreTracker()
         if(round === currentDifficulty.rounds){
@@ -244,6 +230,7 @@ function gameOver(){
     gamePlaying = false
     playButtonElement.textContent = 'PLAY AGAIN'
     messageElement.textContent = 'You Lose at round: ' + round
+    tileBorderHLElement.classList.remove('playerTurn')
 }
 
 function wonSimon(){
@@ -251,6 +238,7 @@ function wonSimon(){
     gamePlaying = false
     playButtonElement.textContent = 'PLAY AGAIN'
     messageElement.textContent = 'You Win!'
+    tileBorderHLElement.classList.remove('playerTurn')
 }
 
 
@@ -281,8 +269,9 @@ function clearHighScore(){
 
 
 
+
 //event listeners
-playButtonElement.addEventListener('click', play)
+playButtonElement.addEventListener('click', playSimon)
 redTileElement.addEventListener('click', playerChoice)
 greenTileElement.addEventListener('click', playerChoice)
 yellowTileElement.addEventListener('click', playerChoice)
@@ -291,7 +280,7 @@ easyButtonElement.addEventListener('click', setEasy)
 mediumButtonElement.addEventListener('click' ,setMedium)
 hardButtonElement.addEventListener('click' , setHard)
 clearHighScoreElement.addEventListener('click',clearHighScore)
-
+muteButtonElement.addEventListener('click', toggleMute)
 
 
 
