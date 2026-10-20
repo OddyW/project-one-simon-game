@@ -16,13 +16,16 @@
     <audio id="xylo2" src="./sounds/xylophone/xylo-d.wav"></audio>
     <audio id="xylo3" src="./sounds/xylophone/xylo-e.wav"></audio>
     <audio id="xylo4" src="./sounds/xylophone/xylo-g.wav"></audio>
-    <!--  -->
-    <header class="topLine">
-        <button id="muteBtn">Mute</button>
+
+    <header>
+        <div class="headerSide">
+            <button id="muteBtn">Mute</button>
+        </div>
         <h1>Simon game</h1>
+        <div class="headerSide"></div>
     </header>
 
-    <details class="gameInfo">
+    <details class="infoPanel">
         <summary>Game Info</summary>
         <h2>How to Play</h2>
         <p>Press PLAY and watch the tiles flash. When the message says "Your Turn!",
@@ -54,18 +57,15 @@
     <h4 id="message">Welcome to Simon!</h4>
 
     <div class="tiles">
-        <!-- tiles -->
+
         <div id="redTile"></div>
         <div id="greenTile"></div>
         <div id="yellowTile"></div>
         <div id="blueTile"></div>
-        <!-- middle panel -->
-        <div class="middlePanel">
-            <!-- <button id="restartBtn">Restart</button> -->
 
+        <div class="middlePanel">
             <button id="playBtn">PLAY</button>
             <div id="round">---</div>
-
         </div>
     </div>
 

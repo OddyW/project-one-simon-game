@@ -78,7 +78,7 @@ function gameSpeed() {
     if (speed > currentDifficulty.maxSpeed) {
         speed = currentDifficulty.maxSpeed
     }
-    console.log(speed)
+    
 }
 
 function toggleMute() {
@@ -175,7 +175,6 @@ function playerChoice(event) {
 
 
     if (tileIndex !== simonSequence[playerIndex]) {
-        console.log('WRONG')
         gameOver()
         return
     }
@@ -185,7 +184,6 @@ function playerChoice(event) {
     if (playerIndex === simonSequence.length) {
         isPlayerTurn = false
         tileBorderHLElement.classList.remove('playerTurn')
-        console.log('CORRECT')
         scoreTracker()
         if (round === currentDifficulty.rounds) {
             wonSimon()

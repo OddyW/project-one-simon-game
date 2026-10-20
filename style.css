@@ -1,20 +1,31 @@
 body {
-    background-color: #1d0154;
+    background-color: #1a1a2e;
     margin: 0;
     padding: 20px;
+    padding-top: 60px;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     text-align: center;
 }
 
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerSide {
+    width: 230px;
+    text-align: left;
+}
 
 h1 {
     font-size: 48px;
     letter-spacing: 6px;
     text-transform: uppercase;
     margin: 10px 0;
-    text-shadow: 0 0 15px rgb(65, 122, 236);
+    text-shadow: 0 0 15px #00e5ff;
 }
 
 h3 {
@@ -26,71 +37,83 @@ h3 {
 }
 
 
+
+.scoreLine {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 420px;
+    margin: 0 auto 10px;
+}
+
+.score {
+    margin: 0;
+    font-size: 18px;
+    white-space: nowrap;
+    text-shadow: 0 0 8px white;
+}
+
+
+#message {
+    width: 420px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    margin: 0 auto 10px;
+    color: #ffd54f;
+    text-shadow: 0 0 10px #ffd54f;
+}
+
+
+
 .tiles {
-    /* position:sticky; */
-    width: 425px;
-    height: 410px;
-    /* background-color: black; */
-    /* border-radius: 50%; */
+    width: 420px;
+    height: 415px;
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: center;
-    padding-bottom: 20px;
-    /* box-shadow: 10px 10px 10px 10px black; */
 }
 
+
 #redTile {
-    width: 197px;
-    height: 197px;
-    background-color: red;
+    width: 191px;
+    height: 191px;
+    background-color: #d62828;
+    border: 3px solid transparent;
     border-top-left-radius: 100%;
-    display: flex;
-    justify-content: end;
     margin: 0 5px;
-    /* cursor: pointer; */
-    color: white;
-    box-shadow: -5px 10px 30px 10px black;
+    box-shadow: 0 4px 10px black;
 }
 
 #greenTile {
-    width: 197px;
-    height: 197px;
-    background-color: green;
+    width: 191px;
+    height: 191px;
+    background-color: #1f9d4a;
+    border: 3px solid transparent;
     border-top-right-radius: 100%;
-    display: flex;
-    justify-content: baseline;
     margin: 0 4px;
-    /* cursor: pointer; */
-    box-shadow: 5px 10px 30px 10px black;
+    box-shadow: 0 4px 10px black;
 }
 
-
-
 #yellowTile {
-    width: 197px;
-    height: 197px;
-    background-color: yellow;
+    width: 191px;
+    height: 191px;
+    background-color: #e6b800;
+    border: 3px solid transparent;
     border-bottom-left-radius: 100%;
-    display: flex;
-    justify-content: flex-end;
     margin: 0 5px;
-    /* cursor: pointer; */
-    box-shadow: 5px 10px 30px 10px black;
-
+    box-shadow: 0 4px 10px black;
 }
 
 #blueTile {
-    width: 197px;
-    height: 197px;
-    background-color: blue;
+    width: 191px;
+    height: 191px;
+    background-color: #2457d6;
+    border: 3px solid transparent;
     border-bottom-right-radius: 100%;
-    display: flex;
-    justify-content: flex-start;
     margin: 0 4px;
-    /* cursor: pointer; */
-    box-shadow: 5px 10px 30px 10px black;
-
+    box-shadow: 0 4px 10px black;
 }
 
 
@@ -98,114 +121,150 @@ h3 {
 .tiles.playerTurn #greenTile:hover,
 .tiles.playerTurn #yellowTile:hover,
 .tiles.playerTurn #blueTile:hover {
-    border: solid rgb(250, 251, 250) 3px;
+    border-color: white;
     cursor: pointer;
 }
 
+#redTile.highLight {
+    background-color: #ff6b6b;
+    box-shadow: 0 0 30px #ff3b3b;
+}
+
+#greenTile.highLight {
+    background-color: #5dff8a;
+    box-shadow: 0 0 30px #3dff7a;
+}
+
+#yellowTile.highLight {
+    background-color: #fff2a8;
+    box-shadow: 0 0 30px #ffe14d;
+}
+
+#blueTile.highLight {
+    background-color: #7fa2ff;
+    box-shadow: 0 0 30px #4d7bff;
+}
 
 
 .middlePanel {
-    /* position: fixed; */
-    background-color: rgb(0, 0, 0);
-    width: 200px;
-    height: 200px;
+    background-color: #0c0c14;
+    width: 192px;
+    height: 192px;
+    border: 4px solid #2a2a3a;
     border-radius: 50%;
     margin: -310px auto;
-    color: black;
-    box-shadow: 0px 0px 50px 5px rgb(0, 0, 0);
-    /* display: ; */
+    box-shadow: 0 0 20px black;
 }
 
-/* #restartBtn{
-    background-color: red;
-    /* margin-top: 40px; */
-/* } */
-
 #playBtn {
-    background-color: rgb(233, 215, 7);
-    color: black;
     border-radius: 50%;
     height: 75px;
     width: 75px;
     margin: 60px auto;
-    cursor: pointer;
     display: block;
-    /* box-shadow: 0px 0px 5px 65px black; */
-    text-shadow: 0 0 15px blue;
+    cursor: pointer;
+    background-color: #ffcc00;
+    border: 2px solid #1d1d2b;
+    font-weight: bold;
+    box-shadow: 0 4px 10px black;
 }
-
-#round {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid black;
-    height: 30px;
-    width: 50px;
-    margin: -45px auto;
-    /* box-shadow: 0 0 25px rgb(255, 0, 0); */
-    /* cursor: pointer; */
-}
-
 
 #playBtn:hover {
-    background-color: yellow;
-    border: solid black 1px;
-    box-shadow: 0 0 15px yellow;
-    font-weight: 550;
+    box-shadow: 0 0 18px #ffd000;
 }
 
-.scoreLine {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 450px;
-    margin: 0 auto;
-}
-
-.score {
-    background-color: blueviolet;
-}
-
-#redTile.highLight {
-    background-color: rgb(255, 126, 126);
-    box-shadow: 0 0 25px red;
-}
-
-#greenTile.highLight {
-    background-color: rgb(0, 227, 0);
-    box-shadow: 0 0 25px rgb(0, 255, 0);
-}
-
-#yellowTile.highLight {
-    background-color: rgb(255, 255, 195);
-    box-shadow: 0 0 25px rgb(255, 255, 0);
-
-}
-
-#blueTile.highLight {
-    background-color: rgb(139, 139, 255);
-    box-shadow: 0 0 25px rgb(0, 60, 255);
-
-}
 
 #playBtn.grey {
     opacity: 0.5;
     cursor: default;
+    box-shadow: 0 4px 10px black;
 }
 
-.gameInfo {
+#round {
+    background-color: black;
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
+    font-weight: bold;
+    height: 30px;
+    width: 50px;
+    line-height: 30px;
+    margin: -45px auto;
+    text-shadow: 0 0 8px #00e5ff;
+    border-radius: 20%;
+}
+
+
+
+#difficulties {
+    margin-top: 30px;
+}
+
+#setDiff {
+    margin-top: 10px;
+    color: #b8b8d0;
+}
+
+#difficulties button,
+#clearHighScore,
+#muteBtn,
+#themeBtn {
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid #00e5ff;
+    background-color: transparent;
+    color: #00e5ff;
+    border-radius: 20px;
+    padding: 6px 14px;
+    margin: 0 5px;
+}
+
+#difficulties button:hover,
+#clearHighScore:hover,
+#muteBtn:hover,
+#themeBtn:hover {
+    box-shadow: 0 0 12px #00e5ff;
+}
+
+#difficulties button.selected {
+    background-color: #00e5ff;
+    color: #0d0d1a;
+    font-weight: bold;
+}
+
+
+.infoPanel {
     position: absolute;
-    width: 300px;
-    background-color: rgb(0, 28, 112);
     left: 20px;
-    top: 140px;
+    top: 120px;
+    width: 300px;
     padding: 15px;
     text-align: left;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #b8b8d0;
+    background-color: #0c0c14;
+    border: 2px solid #2a2a3a;
+    border-radius: 12px;
+    box-shadow: 0 0 5px #00e5ff;
 }
 
-button {
-    border: solid 3px #103cef;
-    border-radius: 40%;
-    padding: 10px;
-    background-color: #1d0154;
-    color: #47ecf8;
-    box-shadow: 0px 0px 10px #47ecf8;
+.infoPanel h2 {
+    font-size: 18px;
+    margin: 0 0 8px;
+    color: #00e5ff;
+    text-shadow: 0 0 8px #00e5ff;
+}
+
+.infoPanel p {
+    margin: 0 0 15px;
+}
+
+.infoPanel ul {
+    margin: 0 0 15px;
+    padding-left: 18px;
+}
+
+.infoPanel li {
+    margin-bottom: 8px;
 }
