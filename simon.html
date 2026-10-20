@@ -11,23 +11,48 @@
 </head>
 
 <body>
-    
+
     <audio id="xylo1" src="./sounds/xylophone/xylo-a.wav"></audio>
     <audio id="xylo2" src="./sounds/xylophone/xylo-d.wav"></audio>
     <audio id="xylo3" src="./sounds/xylophone/xylo-e.wav"></audio>
     <audio id="xylo4" src="./sounds/xylophone/xylo-g.wav"></audio>
     <!--  -->
-    <h1>Simon game</h1>
-    <h3>How to play: the tiles will play in a random sequence, press those tiles in the same order shown to you.</h3>
-     <button id="muteBtn">Mute</button>
+    <header class="topLine">
+        <button id="muteBtn">Mute</button>
+        <h1>Simon game</h1>
+    </header>
+
+    <details class="gameInfo">
+        <summary>Game Info</summary>
+        <h2>How to Play</h2>
+        <p>Press PLAY and watch the tiles flash. When the message says "Your Turn!",
+            click the tiles in the same order. Every round adds one more tile to the
+            sequence. One wrong tile and the game is over.</p>
+
+        <h2>Buttons</h2>
+        <ul>
+            <li><b>PLAY / Restart:</b> starts a game. It restarts the game on your turn,
+                and it is greyed out while Simon is playing.</li>
+            <li><b>Easy / Medium / Hard:</b> pick before you start. Harder levels need
+                more rounds to win and speed up faster. They are locked during a game.</li>
+            <li><b>Clear Highscore:</b> resets your saved best score.</li>
+            <li><b>Mute:</b> turns the sounds off and on.</li>
+        </ul>
+
+        <h2>Scores</h2>
+        <p>Your score is the number of rounds you have cleared. Your high score is
+            saved in this browser.</p>
+    </details>
+
+
     <div class="scoreLine">
         <h4 class="score">Score: <span id="score">0</span> </h4>
-        <h4 id="message">Winning/losing message here</h4>
         <h4 class="score">High Score: <span id="highScore">0</span> </h4>
         <button id="clearHighScore">Clear Highscore</button>
     </div>
 
-    
+    <h4 id="message">Welcome to Simon!</h4>
+
     <div class="tiles">
         <!-- tiles -->
         <div id="redTile"></div>
@@ -36,15 +61,16 @@
         <div id="blueTile"></div>
         <!-- middle panel -->
         <div class="middlePanel">
-        <!-- <button id="restartBtn">Restart</button> -->
-        
-        <button id="playBtn">PLAY</button>
-        <div id="round">---</div>
+            <!-- <button id="restartBtn">Restart</button> -->
 
-    </div>
+            <button id="playBtn">PLAY</button>
+            <div id="round">---</div>
+
+        </div>
     </div>
 
     <div id="difficulties">
+        <!-- <button id="demoBtn">Demo</button> -->
         <button id="easyBtn">Easy</button>
         <button id="mediumBtn">Medium</button>
         <button id="hardBtn">Hard</button>

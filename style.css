@@ -1,5 +1,5 @@
-body{
-    background-color: rgb(48, 47, 47);
+body {
+    background-color: #1d0154;
     margin: 0;
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
@@ -7,7 +7,9 @@ body{
     text-align: center;
 }
 
-h1{
+
+
+h1 {
     font-size: 48px;
     letter-spacing: 6px;
     text-transform: uppercase;
@@ -15,7 +17,7 @@ h1{
     text-shadow: 0 0 15px rgb(65, 122, 236);
 }
 
-h3{
+h3 {
     font-weight: normal;
     font-size: 15px;
     color: #b8b8d0;
@@ -24,46 +26,48 @@ h3{
 }
 
 
-.tiles{
-    position:sticky;
-    width: 420px;
-    height: 415px;
-    background-color: black;
+.tiles {
+    /* position:sticky; */
+    width: 425px;
+    height: 410px;
+    /* background-color: black; */
     /* border-radius: 50%; */
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: center;
-    
+    padding-bottom: 20px;
+    /* box-shadow: 10px 10px 10px 10px black; */
 }
 
-#redTile{
+#redTile {
     width: 197px;
     height: 197px;
     background-color: red;
     border-top-left-radius: 100%;
     display: flex;
-    justify-content:end;
+    justify-content: end;
     margin: 0 5px;
     /* cursor: pointer; */
-    color: white
+    color: white;
+    box-shadow: -5px 10px 30px 10px black;
 }
 
-#greenTile{
+#greenTile {
     width: 197px;
     height: 197px;
     background-color: green;
     border-top-right-radius: 100%;
     display: flex;
-    justify-content:baseline;
+    justify-content: baseline;
     margin: 0 4px;
     /* cursor: pointer; */
-
+    box-shadow: 5px 10px 30px 10px black;
 }
 
 
 
-#yellowTile{
+#yellowTile {
     width: 197px;
     height: 197px;
     background-color: yellow;
@@ -72,10 +76,11 @@ h3{
     justify-content: flex-end;
     margin: 0 5px;
     /* cursor: pointer; */
+    box-shadow: 5px 10px 30px 10px black;
 
 }
 
-#blueTile{
+#blueTile {
     width: 197px;
     height: 197px;
     background-color: blue;
@@ -84,46 +89,52 @@ h3{
     justify-content: flex-start;
     margin: 0 4px;
     /* cursor: pointer; */
+    box-shadow: 5px 10px 30px 10px black;
+
 }
 
 
 .tiles.playerTurn #redTile:hover,
 .tiles.playerTurn #greenTile:hover,
 .tiles.playerTurn #yellowTile:hover,
-.tiles.playerTurn #blueTile:hover{
-    border: solid rgb(250, 251, 250) 3px ;
+.tiles.playerTurn #blueTile:hover {
+    border: solid rgb(250, 251, 250) 3px;
     cursor: pointer;
 }
 
 
 
-.middlePanel{
+.middlePanel {
     /* position: fixed; */
     background-color: rgb(0, 0, 0);
     width: 200px;
     height: 200px;
     border-radius: 50%;
     margin: -310px auto;
-    color: black
+    color: black;
+    box-shadow: 0px 0px 50px 5px rgb(0, 0, 0);
     /* display: ; */
 }
 
 /* #restartBtn{
     background-color: red;
     /* margin-top: 40px; */
-/* } */ 
+/* } */
 
-#playBtn{
+#playBtn {
+    background-color: rgb(233, 215, 7);
+    color: black;
     border-radius: 50%;
     height: 75px;
     width: 75px;
     margin: 60px auto;
     cursor: pointer;
     display: block;
-    
+    /* box-shadow: 0px 0px 5px 65px black; */
+    text-shadow: 0 0 15px blue;
 }
 
-#round{
+#round {
     background-color: rgb(255, 255, 255);
     border: 1px solid black;
     height: 30px;
@@ -131,51 +142,70 @@ h3{
     margin: -45px auto;
     /* box-shadow: 0 0 25px rgb(255, 0, 0); */
     /* cursor: pointer; */
-}  
+}
 
 
-#playBtn:hover{
+#playBtn:hover {
     background-color: yellow;
     border: solid black 1px;
     box-shadow: 0 0 15px yellow;
+    font-weight: 550;
 }
 
-.scoreLine{
+.scoreLine {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    width: 450px;
+    margin: 0 auto;
 }
 
-.score{
+.score {
     background-color: blueviolet;
 }
 
-#redTile.highLight{
+#redTile.highLight {
     background-color: rgb(255, 126, 126);
     box-shadow: 0 0 25px red;
 }
 
-#greenTile.highLight{
+#greenTile.highLight {
     background-color: rgb(0, 227, 0);
     box-shadow: 0 0 25px rgb(0, 255, 0);
 }
 
-#yellowTile.highLight{
+#yellowTile.highLight {
     background-color: rgb(255, 255, 195);
     box-shadow: 0 0 25px rgb(255, 255, 0);
 
 }
 
-#blueTile.highLight{
+#blueTile.highLight {
     background-color: rgb(139, 139, 255);
     box-shadow: 0 0 25px rgb(0, 60, 255);
 
 }
 
-#playBtn.grey{
+#playBtn.grey {
     opacity: 0.5;
     cursor: default;
 }
 
-.highscore{
-    background-color: red;
+.gameInfo {
+    position: absolute;
+    width: 300px;
+    background-color: rgb(0, 28, 112);
+    left: 20px;
+    top: 140px;
+    padding: 15px;
+    text-align: left;
+}
+
+button {
+    border: solid 3px #103cef;
+    border-radius: 40%;
+    padding: 10px;
+    background-color: #1d0154;
+    color: #47ecf8;
+    box-shadow: 0px 0px 10px #47ecf8;
 }
